@@ -7,16 +7,13 @@ import Error from './pages/Error';
 
 function App() {
   return (
-    <>
-      <Switch>
-
-        <Route exact path="/" component={Home} />
-        <Route exact path="/rooms/" component={Rooms} />
-        <Route exact path="/rooms/:slug" component={SingleRoom} />
-        {/* 404 */}
-        <Route component={Error} />
-      </Switch>
-    </>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/rooms/" component={Rooms} />
+      <Route exact path="/rooms/:slug" component={SingleRoom} />
+      {/* 404 */}
+      <Route component={Error} />
+    </Switch>
   );
 }
 
