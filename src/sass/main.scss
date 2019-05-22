@@ -1,0 +1,9 @@
+// General imports ------------------------------------------------------------
+//
+// These imports don't generate CSS, but make defined variables, functions,
+// and mixins available for further usage
+/** Locale Setting **/
+
+/** Partials **/
+@import "partials/normalize";
+@import "partials/typography";

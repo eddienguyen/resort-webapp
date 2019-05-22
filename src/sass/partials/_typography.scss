@@ -1,0 +1,52 @@
+$Open-sans-bold: Open-sans-bold, sans-serif;
+$Open-sans-regular: Open-sans-regular, sans-serif;
+$Open-sans-italic: Open-sans-italic, sans-serif;
+$Open-sans-light: Open-sans-light, sans-serif;
+
+/// path takes from index.scss
+@font-face {
+  font-family: "Open-sans-bold";
+  src: url("./assets/fonts/OpenSans-Bold.eot"); /* IE9 */
+  src: url("./assets/fonts/OpenSans-Bold.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/OpenSans-Bold.woff") format("woff"),
+    /* chrome, firefox */ url("./assets/fonts/OpenSans-Bold.ttf") format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url("./assets/fonts/OpenSans-Bold.svg#OpenSans-Bold")
+      format("svg"); /* iOS 4.1- */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open-sans-regular";
+  src: url("./assets/fonts/OpenSans-Regular.eot"); /* IE9 */
+  src: url("./assets/fonts/OpenSans-Regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/OpenSans-Regular.woff") format("woff"),
+    /* chrome, firefox */ url("./assets/fonts/OpenSans-Regular.ttf") format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url("./assets/fonts/OpenSans-Regular.svg#OpenSans-Regular")
+      format("svg"); /* iOS 4.1- */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open-sans-italic";
+  src: url("./assets/fonts/OpenSans-Light.eot"); /* IE9 */
+  src: url("./assets/fonts/OpenSans-Italic.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/OpenSans-Italic.woff") format("woff"),
+    /* chrome, firefox */ url("./assets/fonts/OpenSans-Italic.ttf") format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url("./assets/fonts/OpenSans-Italic.svg#OpenSans-Italic")
+      format("svg"); /* iOS 4.1- */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open-sans-light";
+  src: url("./assets/fonts/OpenSans-Light.eot"); /* IE9 */
+  src: url("./assets/fonts/OpenSans-Light.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/OpenSans-Light.woff") format("woff"),
+    /* chrome, firefox */ url("./assets/fonts/OpenSans-Light.ttf") format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url("./assets/fonts/OpenSans-Light.svg#OpenSans-Light")
+      format("svg"); /* iOS 4.1- */
+  font-weight: normal;
+  font-style: normal;
+}
