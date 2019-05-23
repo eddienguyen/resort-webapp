@@ -1,0 +1,43 @@
+@import "sass/base/_config_global.scss";
+
+.banner {
+  display: inline-block;
+  color: $mainWhite;
+  padding: 0;
+  text-align: center;
+  align-self: center;
+  z-index: 1;
+}
+.banner h1 {
+  font-size: 2.5rem;
+  font-family: $Open-sans-bold;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+}
+// .banner div {
+//   width: 10rem;
+//   height: 5px;
+//   margin: 1.7rem auto;
+// }
+.banner p {
+  font-size: 1rem;
+  font-family: $Open-sans-regular;
+  text-transform: unset;
+}
+@media screen and (min-width: 768px) {
+  .banner {
+    padding-left: 2rem;
+    text-align: left;
+    color: $primaryColor;
+  }
+}
+@media screen and (min-width: 576px) {
+  .banner h1 {
+    font-size: 3rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .banner h1 {
+    font-size: 4rem;
+  }
+}

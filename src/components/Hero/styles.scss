@@ -1,0 +1,47 @@
+.defaultHero,
+.roomsHero {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+  overflow-x: hidden;
+
+  .heroVisual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: -1;
+    text-align: center;
+
+    img {
+      height: 100%;
+    }
+  }
+}
+
+.roomsHero {
+  min-height: 60vh;
+}
+
+@media screen and (min-width: 768px) {
+  .defaultHero,
+  .roomsHero {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 0;
+
+    > * {
+      flex: 1 0 50%;
+    }
+
+    .heroVisual {
+      position: relative;
+      z-index: 0;
+      text-align: right;
+    }
+  }
+}

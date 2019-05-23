@@ -1,0 +1,75 @@
+@import "sass/base/_config_global.scss";
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.75rem 2rem;
+  background: transparent;
+  z-index: 10;
+}
+.navHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.navBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.navIcon {
+  font-size: 1.5rem;
+  color: $primaryColor;
+}
+.navLinks {
+  height: 0;
+  overflow: hidden;
+  transition: $mainTransition;
+  list-style-type: none;
+
+  a {
+    display: block;
+    text-decoration: none;
+    padding: 1rem 0;
+    color: $mainWhite;
+    transition: $mainTransition;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    font-family: $Open-sans-light;
+    background: transparent;
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+
+  // STATE
+  &.open {
+    height: 200px;
+  }
+}
+
+@media screen and(min-width: 768px) {
+  .navCenter {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  .navBtn {
+    display: none;
+  }
+  .navLinks {
+    height: auto;
+    display: flex;
+    margin-left: 4em;
+
+    a {
+      margin: 0 1rem;
+      padding: 0.5rem 0;
+    }
+  }
+}

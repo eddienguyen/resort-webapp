@@ -1,0 +1,42 @@
+@import "sass/base/_config_global.scss";
+
+section {
+  p {
+    font-family: $Open-sans-regular;
+    color: $primaryColorLight;
+    line-height: 1.5rem;
+
+    span {
+      display: block;
+    }
+  }
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  h4 {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: $accentColor;
+    font-family: $Open-sans-regular;
+  }
+
+  h3 {
+    font-family: $Open-sans-bold;
+    color: $primaryColor;
+    font-size: 2rem;
+  }
+
+  //   div {
+  //     width: 5rem;
+  //     height: 5px;
+  //     margin: 0 auto;
+  //   }
+}
+
+.section-content {
+  text-align: center;
+}

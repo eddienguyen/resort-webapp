@@ -1,0 +1,27 @@
+@import "sass/base/_config_global.scss";
+
+.btnPrimary {
+  display: inline-block;
+  background: $accentColor;
+  padding: 1.1rem 1.8rem;
+  border: 3px solid $accentColor;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.4rem;
+  color: $mainWhite;
+  font-family: $Open-sans-light;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  outline: 0 none;
+
+  &:hover {
+    box-shadow: 0 0 15px 1px $accentColor;
+  }
+
+  &:active {
+    transition: none;
+    box-shadow: unset;
+  }
+}
