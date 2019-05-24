@@ -1,0 +1,97 @@
+@import "sass/base/_config_global.scss";
+.roomCard {
+  position: relative;
+  box-shadow: 0 0 30px rgba(10, 10, 10, 0.2);
+  transition: all 0.3s ease;
+  margin: 2rem 0;
+  z-index: 1;
+
+  &:hover {
+    box-shadow: 0 0 35px rgba(20, 20, 20, 0.3);
+  }
+
+  .roomCardLink {
+    text-decoration: none;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+
+    &:hover {
+      img {
+        transform: scale(1);
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    transition: all 0.2s ease;
+    transform: scale(1.1);
+  }
+
+  .roomCardContent {
+    padding: 2rem;
+    text-align: left;
+    font-family: $Open-sans-regular;
+  }
+
+  h5 {
+    color: $primaryColor;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    margin-bottom: 1.2rem;
+  }
+
+  p {
+    color: $primaryColor;
+    font-size: 0.9rem;
+  }
+
+  .contentMeta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .bedroom {
+    color: $primaryColorDark;
+  }
+
+  button {
+    position: relative;
+    color: $accentColor;
+    border: 0 none;
+    outline: 0 none;
+    background: transparent;
+    font-size: 1.1rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 40px;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    z-index: 10;
+
+    &:hover {
+      box-shadow: 0 0 15px rgba(10, 10, 10, 0.2);
+    }
+
+    &:active {
+      transition: none;
+      box-shadow: unset;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .roomCard {
+    margin: 1rem;
+
+    // &:first-child {
+    //   margin-left: 0;
+    // }
+    // &:last-child {
+    //   margin-right: 0;
+    // }
+  }
+}

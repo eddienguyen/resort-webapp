@@ -1,0 +1,41 @@
+@import "sass/base/_config_global.scss";
+.filterForm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(202px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 40px;
+
+  .formGroup {
+    text-transform: capitalize;
+    text-align: left;
+
+    label {
+      display: block;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .formControl {
+      width: 100%;
+      background: transparent;
+      font-size: 1rem;
+    }
+    .sizeInputs {
+      display: flex;
+      justify-content: space-between;
+    }
+    .sizeInput {
+      width: 40%;
+      padding: 0.2rem;
+      border: 1px solid $mainBlack;
+      border-radius: 0.3rem;
+      margin-right: 0.3rem;
+    }
+  }
+  .singleExtra {
+    label {
+      display: inline-block;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+    }
+  }
+}

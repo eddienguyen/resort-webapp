@@ -1,17 +1,27 @@
 @import "sass/base/_config_global.scss";
+@import "sass/module/_common.scss";
+
+.explore {
+  .featuredRooms {
+    display: flex;
+    flex-flow: column;
+  }
+}
 
 .services {
-  padding: 2rem;
   text-align: center;
+
 }
-.services-center {
-  width: 90vw;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-  grid-row-gap: 2rem;
-  grid-column-gap: 50px;
-}
+
+
+// .services-center {
+//   width: 90vw;
+//   margin: 0 auto;
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+//   grid-row-gap: 2rem;
+//   grid-column-gap: 50px;
+// }
 // .service span {
 //   display: inline-block;
 //   color: var(--primaryColor);
@@ -32,8 +42,87 @@
   min-width: 100%;
 }
 @media screen and (min-width: 992px) {
-  .services-center {
-    width: 95vw;
-    max-width: 1170px;
+  // .services-center {
+  //   width: 95vw;
+  //   max-width: 1170px;
+  // }
+}
+
+.experiencesFlexBaseline {
+  display: flex;
+  flex-flow: column;
+}
+
+.experience {
+  position: relative;
+  box-shadow: 0 0 35px rgba(10, 10, 10, 0.2);
+  margin: 2rem 0;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: $accentColor;
   }
+
+  .experienceContent {
+    padding: 2rem 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+  h6 {
+    @extend .resortLabel;
+    margin-bottom: 1rem;
+  }
+  h5 {
+    font-family: $Open-sans-regular;
+    color: $primaryColor;
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .experiencesFlexBaseline {
+    // width: 95vw;
+    // max-width: 1170px;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .experience {
+    flex: 1;
+    margin: 2rem 1rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .explore {
+    .featuredRooms {
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 -1rem;
+
+      > * {
+        flex: 1 0 30%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  // .services p {
+  //   width: 100%;
+  // }
 }

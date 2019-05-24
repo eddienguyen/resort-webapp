@@ -1,0 +1,14 @@
+@import "../base/config_global";
+.resortLabel {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $accentColor;
+  font-family: $Open-sans-regular;
+  font-size: 0.8rem;
+}
+.container {
+  padding: 0 $min-page-padding;
+  width: 100%;
+  max-width: $max-container-width;
+  margin: 0 auto;
+}

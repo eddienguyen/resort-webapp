@@ -1,0 +1,45 @@
+@import "sass/base/_config_global.scss";
+
+.emptySearch {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 2rem 0;
+  padding: 1rem;
+  letter-spacing: 2px;
+  font-family: $Open-sans-regular;
+  color: $primaryColor;
+}
+
+.roomlist {
+}
+.roomlistCenter {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 1rem;
+  // flex or grid ?
+  //   display: flex;
+  //   flex-flow: column;
+}
+
+@media screen and (min-width: 776px) {
+  //   .roomlist-center {
+  //     width: 90vw;
+  //   }
+}
+@media screen and (min-width: 992px) {
+  //   .roomlist-center {
+  //     width: 95vw;
+  //     max-width: 1170px;
+  //   }
+  .roomlistCenter {
+    // grid or flex ?
+    // flex-flow: row wrap;
+    // justify-content: space-between;
+    // align-items: center;
+    margin: 0 -1rem;
+
+    // > * {
+    //   flex: 1 0 30%;
+    // }
+  }
+}

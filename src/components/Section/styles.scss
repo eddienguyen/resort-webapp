@@ -1,6 +1,8 @@
 @import "sass/base/_config_global.scss";
+@import "sass/module/_common.scss";
 
 section {
+  margin-top: 150px;
   p {
     font-family: $Open-sans-regular;
     color: $primaryColorLight;
@@ -16,12 +18,8 @@ section {
   margin-bottom: 4rem;
 
   h4 {
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    @extend .resortLabel;
     margin-bottom: 1rem;
-    color: $accentColor;
-    font-family: $Open-sans-regular;
   }
 
   h3 {

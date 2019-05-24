@@ -16,6 +16,6 @@ export default function Home() {
             <Explore />
             <Services />
             <Experiences />
-            <Testimonials />
+            {/* <Testimonials /> */}
         </>);
 }
