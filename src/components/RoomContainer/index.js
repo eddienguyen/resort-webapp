@@ -9,10 +9,8 @@ function RoomContainer({ context }) {
     if (isLoading) return <span>loading rooms for filter</span>;
     return (
         <Section title="Search rooms">
-            <div className="container">
-                <RoomFilter rooms={rooms} />
-                <RoomList rooms={sortedRooms} />
-            </div>
+            <RoomFilter rooms={rooms} />
+            <RoomList rooms={sortedRooms} />
         </Section>
     );
 }

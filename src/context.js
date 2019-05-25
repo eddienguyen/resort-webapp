@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 /// get local data:
-import items from 'assets/data';
+// import items from 'assets/data'; // get item from CDN
+import Client from './contentful';
+
 const RoomContext = React.createContext();
 
 class RoomProvider extends Component {
@@ -26,24 +28,36 @@ class RoomProvider extends Component {
     }
 
     /// call external data
-    // getData() {}
+    getData = async function () {
+        try {
+            let response = await Client.getEntries({
+                content_type: "resortRoom",
+                // order: "sys.createdAt"
+                order: 'fields.price'
+            });
+
+            console.log(response);
+            let rooms = this.formatData(response.items);
+            let featuredRooms = rooms.filter(room => room.featured === true);
+            let maxPrice = Math.max(...rooms.map(room => room.price));
+            let maxSize = Math.max(...rooms.map(room => room.size));
+
+            this.setState({
+                rooms: rooms,
+                sortedRooms: rooms,
+                featuredRooms: featuredRooms,
+                isLoading: false,
+                price: maxPrice,
+                maxPrice,
+                maxSize
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     componentDidMount() {
-        // this.getData
-        let rooms = this.formatData(items);
-        let featuredRooms = rooms.filter(room => room.featured === true);
-        let maxPrice = Math.max(...rooms.map(room => room.price));
-        let maxSize = Math.max(...rooms.map(room => room.size));
-
-        this.setState({
-            rooms: rooms,
-            sortedRooms: rooms,
-            featuredRooms: featuredRooms,
-            isLoading: false,
-            price: maxPrice,
-            maxPrice,
-            maxSize
-        });
+        this.getData();
     }
 
     // after get the data items

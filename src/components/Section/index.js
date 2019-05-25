@@ -4,12 +4,14 @@ import './styles.scss';
 
 const Section = ({ children, title, label, classNames }) => {
     return <section className={classNames}>
-        <div className="section-title">
-            {label && <h4>{label}</h4>}
-            {title && <h3>{title}</h3>}
-        </div>
-        <div className="section-content">
-            {children}
+        <div className="container">
+            <div className="section-title">
+                {label && <h4>{label}</h4>}
+                {title && <h3>{title}</h3>}
+            </div>
+            <div className="section-content">
+                {children}
+            </div>
         </div>
     </section>
 }

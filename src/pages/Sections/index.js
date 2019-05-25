@@ -12,7 +12,7 @@ const Services = () => {
             <div className="servicesBanner">
 
             </div>
-            <div className="servicesContent container">
+            <div className="servicesContent">
                 <h2>
                     Private Rooms,
                 </h2>
@@ -49,9 +49,7 @@ class Explore extends Component {
         return (
             <Section label="explore" title="Explore wonderful dream rooms" classNames="explore">
                 <SizedBox height={4} />
-                <div className="container">
-                    {isLoading ? 'loading...' : featuredRooms}
-                </div>
+                {isLoading ? 'loading...' : featuredRooms}
             </Section>
         );
     }
@@ -82,24 +80,22 @@ class Experiences extends Component {
         const { experiences } = this.state;
         return (
             <Section label="experiences" title="Make your stay unforgettable" classNames="experiences" >
-                <div className="container">
-                    <div>
-                        <p>
-                            <span>Villatel makes easy to add unforgettable</span>
-                            <span>moments to your vacation.</span>
-                        </p>
-                    </div>
-                    <div className="experiencesFlexBaseline">
-                        {experiences.map((article, key) => {
-                            return <article key={key} className="experience">
-                                <img src={article.imageSrc} alt={article.label} />
-                                <div className="experienceContent">
-                                    <h6>{article.label}</h6>
-                                    <h5>{article.title}</h5>
-                                </div>
-                            </article>
-                        })}
-                    </div>
+                <div>
+                    <p>
+                        <span>Villatel makes easy to add unforgettable</span>
+                        <span>moments to your vacation.</span>
+                    </p>
+                </div>
+                <div className="experiencesFlexBaseline">
+                    {experiences.map((article, key) => {
+                        return <article key={key} className="experience">
+                            <img src={article.imageSrc} alt={article.label} />
+                            <div className="experienceContent">
+                                <h6>{article.label}</h6>
+                                <h5>{article.title}</h5>
+                            </div>
+                        </article>
+                    })}
                 </div>
             </Section>
         );
