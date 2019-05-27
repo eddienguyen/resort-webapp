@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from 'components/Hero/Hero';
 import Banner from 'components/Banner/Banner';
 import { Services, Explore, Experiences, Testimonials } from 'pages/Sections';
+import bannerSrc from 'assets/images/detail-22.jpg';
 export default function Home() {
     return (
         <>

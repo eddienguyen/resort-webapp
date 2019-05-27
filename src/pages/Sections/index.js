@@ -4,7 +4,8 @@ import Section from 'components/Section';
 import SizedBox from 'components/SizedBox';
 import { RoomCard } from 'components/Room';
 import { RoomContext } from 'context';
-import Hero from 'components/Hero/Hero';
+// import Hero from 'components/Hero/Hero';
+
 const Services = () => {
     return (
         <Section label="services" classNames="services">
@@ -47,7 +48,11 @@ class Explore extends Component {
 
 
         return (
-            <Section label="explore" title="Explore wonderful dream rooms" classNames="explore">
+            <Section 
+                label="explore" 
+                title="Explore wonderful dream rooms" 
+                classNames="explore"
+                >
                 <SizedBox height={4} />
                 {isLoading ? 'loading...' : featuredRooms}
             </Section>
