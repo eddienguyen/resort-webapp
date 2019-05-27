@@ -1,0 +1,60 @@
+import React, { Component } from 'react';
+import { TimelineLite, Power2, TweenLite } from 'gsap';
+
+const withAnimation = (WrappedComponent, transformOrigin) => {
+
+    class WithAnimation extends Component {
+        constructor(props) {
+            super(props);
+            this.elementRef = null;
+            this.tl = new TimelineLite();
+        }
+
+        // animateIn() {
+        //     this.tl.from(this.elementRef, 5, {
+        //         scale: 0,
+        //         transformOrigin: transformOrigin || 'center',
+        //         ease: Power2.easeInOut
+        //     });
+        //     this.tl.play();
+        // }
+
+        componentDidMount() {
+            this.elementRef = this.props.forwardedRef.current;
+
+            this.tl.from(this.elementRef, 1, {
+                scale: 0.5,
+                autoAlpha: 0,
+                transformOrigin: transformOrigin || 'center',
+                ease: Power2.easeOut
+            });
+            if (this.elementRef != null) {
+                this.tl.play();
+            }
+        }
+
+        componentWillUnmount() {
+            console.log('unmounting');
+            this.tl.reverse();
+        }
+
+        render() {
+            const { ref, ...rest } = this.props;
+            return (
+                <WrappedComponent forwardedRef={ref} {...rest} />
+            );
+        }
+    }
+
+    const forwardRef = (props, ref) => {
+        return <WithAnimation forwardedRef={ref} {...props} />
+    }
+
+    return React.forwardRef(forwardRef);
+
+}
+
+export {
+    withAnimation
+}
+

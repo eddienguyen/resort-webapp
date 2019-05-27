@@ -13,36 +13,25 @@
     left: 0;
     right: 0;
     bottom: 0;
+
     overflow: hidden;
     z-index: -1;
     text-align: center;
 
-    .imageWrapper {
-    }
-    .svgImg {
-      // position: relative;
-      position: absolute;
-      top: 0;
-      left: 0;
-      // width: 100%;
-      // height: 100%;
-    }
+    .imageWrapper {}
+    .svgImg {}
     .svgClip {
-      // width: 100%;
-      // height: 100%;
-    }
-
-    .clipPathHero {
-      fill: none;
-      stroke: #000;
-      stroke-miterlimit: 10;
-      stroke-width: 0.75px;
+      width: 0%;
+      height: 0%;
     }
 
     .usesImg {
       position: absolute;
       top: 0px;
-      left: 0px;
+      right: 0;
+      // left: 0px;
+      // width: 100%;
+
       -webkit-clip-path: url(#clipPath);
       clip-path: url(#clipPath);
     }
@@ -67,12 +56,17 @@
 
     > * {
       flex: 1 0 50%;
+      width: 50%;
+      max-width: 50%;
     }
 
     .heroVisual {
-      position: relative;
+      // position: relative;
+      left: unset;
+      width: 60%;
+      max-width: unset;
+      min-height: 110vh;
       z-index: 0;
-      // text-align: right;
     }
   }
 }

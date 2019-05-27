@@ -13,7 +13,6 @@ export default function RoomFilter() {
         price,
         minPrice,
         maxPrice,
-        size,
         minSize,
         maxSize,
         capacity,

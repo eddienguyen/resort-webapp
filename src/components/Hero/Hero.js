@@ -1,62 +1,104 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import './styles.scss';
-import bannerSrc from 'assets/images/detail-22.jpg';
-//https://stackoverflow.com/questions/46463344/clip-path-is-not-working-for-firefox-ie-or-edge
+import bannerSrc from 'assets/images/detail-22.jpg';   // default hero banner
+import { withAnimation } from 'components/Animation';
+
+
+class Path extends Component {
+    render() {
+        const { forwardedRef, d, className, ...props } = this.props;
+        return (
+            <path
+                ref={forwardedRef}
+                className={className}
+                d={d}
+                {...props}
+            />
+        );
+    }
+}
+
+let SvgWithAnimation = withAnimation(Path, 'top right');
 export default class Hero extends Component {
     constructor(props) {
         super(props);
-        // ({ heroClassname, children, heroImg })
         this.svgImgRef = React.createRef();
+        this.pathRef = React.createRef();
         this.state = {
             maxVisualWidth: 0,
-            maxVisualHeight: 0
+            maxVisualHeight: 0,
+            isLoadingVisual: true,
+            isLoadingBannerImg: true
         }
+    }
+
+    handleImageLoaded() {
+        this.setState({
+            isLoadingBannerImg: false
+        });
     }
 
     componentDidMount() {
         const node = this.svgImgRef.current;
-        this.setState({
-            maxVisualWidth: node.clientWidth,
-            maxVisualHeight: node.clientHeight
-        });
-        console.log(node.clientWidth);
-        console.log(node.clientHeight);
+        if (node !== null && node.clientWidth !== 0 && node.clientHeight !== 0) {
+            this.setState({
+                maxVisualWidth: node.clientWidth,
+                maxVisualHeight: node.clientHeight,
+                isLoadingVisual: false
+            });
+        }
     }
 
+    componentDidUpdate() {}
     render() {
+        const {
+            maxVisualWidth,
+            maxVisualHeight,
+            isLoadingVisual,
+            isLoadingBannerImg } = this.state;
         const { heroClassname, children, heroImg } = this.props;
+
         return (
-            <header className={heroClassname}
-                ref={this.svgImgRef}
-            >
+            <header className={heroClassname}>
                 {children}
                 {/* visual */}
-                <div className="heroVisual">
-                    <div className="imageWrapper">
-                        <svg
-                            viewBox={`0 0 ${this.state.maxVisualWidth / 2} ${this.state.maxVisualHeight}`}
-                            width={this.state.maxVisualWidth / 2}
-                            height={this.state.maxVisualHeight}
-                            className="svgImg"
-                            preserveAspectRatio="xMinYMid meet"
-                            x="100"
-                            y="0"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            {/* <image href={heroImg || "https://picsum.photos/800"} /> */}
-                            <image
+                <div className="heroVisual"
+                    ref={this.svgImgRef}
+                >
+                    <svg
+                        width={maxVisualWidth}
+                        height={maxVisualHeight}
+                        className="svgImg"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        {
+                            !isLoadingVisual && <image
                                 className="usesImg"
-                                width={this.state.maxVisualWidth}
-                                height={this.state.maxVisualHeight}
-                                href={bannerSrc} />
-                        </svg>
-                        {/* <img src={heroImg || "https://picsum.photos/800"} alt="heroVisual" /> */}
-                    </div>
-                    <svg className="svgClip">
+                                height={maxVisualHeight}
+                                href={heroImg || bannerSrc}
+                                onLoad={this.handleImageLoaded.bind(this)}
+                            />
+                        }
+
+                    </svg>
+
+                    <svg
+                        viewBox={`0 0 ${maxVisualWidth} ${maxVisualHeight}`}
+                        // <!--viewBox = "X1 Y1 X2 Y2"-->
+                        className="svgClip">
                         <defs>
-                            <clipPath id="clipPath">
-                                <path className="clipPathHero" d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z" />
+                            <clipPath
+                                id="clipPath"
+                                clipPathUnits="objectBoundingBox"
+                                transform={`scale(${1 / maxVisualWidth} ${1 / maxVisualHeight})`}
+                            >
+                                {/* path */}
+                                {!isLoadingVisual && !isLoadingBannerImg && <SvgWithAnimation
+                                    className="clipPathHero"
+                                    d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z"
+                                    ref={this.pathRef}
+                                />}
                             </clipPath>
                         </defs>
                     </svg>
