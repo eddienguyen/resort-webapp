@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { IoIosMenu } from 'react-icons/io';
-import globalLogo from 'assets/images/logo.png';
+// import globalLogo from 'assets/images/logo.png';
+import logo from 'assets/images/SVG/logo.svg';
 import SingleRoom from 'pages/SingleRoom';
 import './styles.scss';
 import indexRoutes from 'routes';
@@ -10,9 +11,11 @@ class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            isScrollDown: false
         }
         this.handleToggle = this.handleToggle.bind(this);
+        this.handleScrollDown = this.handleScrollDown.bind(this);
     }
     handleToggle() {
         this.setState(currentState => {
@@ -22,14 +25,47 @@ class Navbar extends Component {
         })
     }
 
+    handleScrollDown = () => {
+        const navbarHeight = 80;
+        if (window.scrollY > navbarHeight) {
+            console.log('scrolled');
+            if (this.state.isScrollDown === true) return;
+
+            this.setState({
+                isSrollDown: true
+            });
+            return;
+        }
+        if (window.scrollY <= navbarHeight) {
+            console.log('unscrolled');
+            if (this.state.isScrollDown === false) return;
+
+            this.setState({
+                isSrollDown: false
+            });
+            return;
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScrollDown);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScrollDown);
+    }
+
     render() {
         const { isOpen } = this.state;
+
+        let linkClassName = this.state.isScrollDown ? 'scrolled' : 'unscrolled';
+
         return (
             <nav className="navbar">
                 <div className="navCenter">
                     <div className="navHeader">
                         <Link to="/">
-                            <img src={globalLogo} alt="globalLogo" />
+                            <img src={logo} alt="navLogo" className="navLogo" />
                         </Link>
                         <button className="navBtn" onClick={this.handleToggle}>
                             <IoIosMenu className="navIcon" />
@@ -40,7 +76,10 @@ class Navbar extends Component {
                         {indexRoutes.map((prop, key) => {
                             return prop.path && prop.component.prototype !== SingleRoom.prototype && (
                                 <li key={key}>
-                                    <Link to={prop.path}>{prop.name}</Link>
+                                    <Link
+                                        to={prop.path}
+                                        className={linkClassName}
+                                    >{prop.name}</Link>
                                 </li>
                             );
                         })}
