@@ -8,7 +8,7 @@
 # testing
 /coverage
 /assets
-.env.development
+# .env.development
 # production
 /build
 
