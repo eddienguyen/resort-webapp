@@ -65,20 +65,26 @@
     border: 0 none;
     outline: 0 none;
     background: transparent;
-    font-size: 1.1rem;
-    padding: 0.3rem 0.5rem;
-    border-radius: 40px;
-    transition: all 0.2s ease-in;
     cursor: pointer;
-    z-index: 10;
 
-    &:hover {
-      box-shadow: 0 0 15px rgba(10, 10, 10, 0.2);
+    &.btnToggleExtendDesc {
     }
 
-    &:active {
-      transition: none;
-      box-shadow: unset;
+    &.btnBook {
+      font-size: 1.1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 40px;
+      transition: all 0.2s ease-in;
+
+      z-index: 10;
+      &:hover {
+        box-shadow: 0 0 15px rgba(10, 10, 10, 0.2);
+      }
+
+      &:active {
+        transition: none;
+        box-shadow: unset;
+      }
     }
   }
 }

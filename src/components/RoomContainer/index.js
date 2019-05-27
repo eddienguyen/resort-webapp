@@ -5,12 +5,12 @@ import { withRoomConsumer } from 'context';
 import Section from 'components/Section';
 
 function RoomContainer({ context }) {
-    const { isLoading, rooms, sortedRooms } = context;
+    const { isLoading, rooms, sortedRooms, minDescChar } = context;
     if (isLoading) return <span>loading rooms for filter</span>;
     return (
         <Section title="Search rooms">
             <RoomFilter rooms={rooms} />
-            <RoomList rooms={sortedRooms} />
+            <RoomList rooms={sortedRooms} minDescChar={minDescChar} />
         </Section>
     );
 }

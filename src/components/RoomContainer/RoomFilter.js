@@ -32,7 +32,7 @@ export default function RoomFilter() {
     return (
         <form className="filterForm">
             {/* type */}
-            <div className="formGroup">
+            <div className="formGroup selectGroup">
                 <label htmlFor="type" >room type</label>
                 <select
                     name="type"
@@ -47,7 +47,7 @@ export default function RoomFilter() {
             {/* type */}
 
             {/* Guests */}
-            <div className="formGroup">
+            <div className="formGroup selectGroup">
                 <label htmlFor="capacity" > Guests</label>
                 <select
                     name="capacity"

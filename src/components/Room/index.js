@@ -3,32 +3,92 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-function RoomCard({ roomData }) {
-    const {
-        slug,
-        name,
-        description,
-        capacity,
-        images,
-    } = roomData;
+class RoomCard extends React.Component {
 
-    let thumbnailSrc = images[0] || "https://via.placeholder.com/200";
+    constructor(props) {
+        super(props);
+        this.state = {
+            shouldShowExtendedDesc: false,
+            descriptionArr: []
+        }
+    }
 
-    return (
-        <div className="roomCard">
-            <Link to={`/rooms/${slug}`} className="roomCardLink">
-                <img src={thumbnailSrc} alt={slug} />
-            </Link>
-            <div className='roomCardContent'>
-                <h5>{name}</h5>
-                <p>{description}</p>
-                <div className="contentMeta">
-                    <span className="bedroom">{`${capacity} bedrooms`}</span>
-                    <button>Book now</button>
+    componentDidMount() {
+        const showChar = this.props.minChar;
+        let descText = this.props.roomData.description;
+        let descTextArr = [];
+
+        if (descText.length > showChar) {
+            descTextArr[0] = descText.substr(0, showChar);
+            descTextArr[1] = descText.substr(showChar, descText.length);
+        }
+        this.setState({
+            descriptionArr: descTextArr
+        });
+    }
+
+
+
+    handleToggleExtendedDesc = () => {
+        this.setState(prevState => {
+            return {
+                shouldShowExtendedDesc: !prevState.shouldShowExtendedDesc
+            }
+        });
+    }
+
+    render() {
+
+        const {
+            shouldShowExtendedDesc,
+            descriptionArr
+        } = this.state;
+
+        const {
+            slug,
+            name,
+            description,
+            capacity,
+            images,
+        } = this.props.roomData;
+
+        let thumbnailSrc = images[0] || "https://via.placeholder.com/200";
+
+        let descriptionParagraph =
+            descriptionArr.length > 0
+                ? (
+                    <p>
+                        {
+                            shouldShowExtendedDesc
+                                ? descriptionArr[0] + descriptionArr[1]
+                                : descriptionArr[0] + ' ... '
+                        }
+                        <button
+                            className="btnToggleExtendDesc"
+                            onClick={this.handleToggleExtendedDesc}
+                        >{shouldShowExtendedDesc ? 'see less' : 'see more'}</button>
+                    </p>
+                )
+                : (
+                    <p>{description}</p>
+                );
+
+        return (
+            <div className="roomCard">
+                <Link to={`/rooms/${slug}`} className="roomCardLink">
+                    <img src={thumbnailSrc} alt={slug} />
+                </Link>
+                <div className='roomCardContent'>
+                    <h5>{name}</h5>
+                    {descriptionParagraph}
+                    <div className="contentMeta">
+                        <span className="bedroom">{`${capacity} bedrooms`}</span>
+                        <button className="btnBook">Book now</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 RoomCard.propTypes = {
@@ -38,7 +98,12 @@ RoomCard.propTypes = {
         description: PropTypes.string,
         capacity: PropTypes.number,
         images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
+    }),
+    minChar: PropTypes.number
+}
+
+RoomCard.defaultProps = {
+    minChar: 200,
 }
 
 export {

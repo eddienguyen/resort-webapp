@@ -23,6 +23,7 @@ class RoomProvider extends Component {
             capacity: 1,
             pets: false,
             breakfast: false,
+            minDescChar: 0
         };
         // this.formatData = this.formatData.bind(this);
     }
@@ -36,11 +37,12 @@ class RoomProvider extends Component {
                 order: 'fields.price'
             });
 
-            console.log(response);
+            console.log('response from Contentful:', response);
             let rooms = this.formatData(response.items);
             let featuredRooms = rooms.filter(room => room.featured === true);
             let maxPrice = Math.max(...rooms.map(room => room.price));
             let maxSize = Math.max(...rooms.map(room => room.size));
+            let minDescChar = Math.min(...rooms.map(room => room.description.length));
 
             this.setState({
                 rooms: rooms,
@@ -49,7 +51,8 @@ class RoomProvider extends Component {
                 isLoading: false,
                 price: maxPrice,
                 maxPrice,
-                maxSize
+                maxSize,
+                minDescChar
             });
         } catch (error) {
             console.log(error);

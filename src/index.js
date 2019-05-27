@@ -8,7 +8,9 @@ import 'index.scss';
 
 ReactDOM.render(
     <RoomProvider>
-        <Router><App /></Router>
+        <Router>
+            <App />
+        </Router>
     </RoomProvider>
     , document.getElementById('root'));
 

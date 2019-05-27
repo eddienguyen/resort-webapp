@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import './styles.scss';
-import bannerSrc from 'assets/images/detail-22.jpg';   // default hero banner
-import { withAnimation } from 'components/Animation';
-
+import bannerSrc from 'assets/images/defaultBG.jpg';   // default hero banner
+import { withRevealAnimation } from 'components/Animation';
 
 class Path extends Component {
     render() {
@@ -19,7 +18,7 @@ class Path extends Component {
     }
 }
 
-let SvgWithAnimation = withAnimation(Path, 'top right');
+const SvgWithRevealAnimation = withRevealAnimation(Path, 'top right');
 export default class Hero extends Component {
     constructor(props) {
         super(props);
@@ -50,7 +49,7 @@ export default class Hero extends Component {
         }
     }
 
-    componentDidUpdate() {}
+    componentDidUpdate() { }
     render() {
         const {
             maxVisualWidth,
@@ -88,18 +87,20 @@ export default class Hero extends Component {
                         // <!--viewBox = "X1 Y1 X2 Y2"-->
                         className="svgClip">
                         <defs>
-                            <clipPath
-                                id="clipPath"
-                                clipPathUnits="objectBoundingBox"
-                                transform={`scale(${1 / maxVisualWidth} ${1 / maxVisualHeight})`}
-                            >
-                                {/* path */}
-                                {!isLoadingVisual && !isLoadingBannerImg && <SvgWithAnimation
-                                    className="clipPathHero"
-                                    d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z"
-                                    ref={this.pathRef}
-                                />}
-                            </clipPath>
+                            {!isLoadingVisual &&
+                                <clipPath
+                                    id="clipPath"
+                                    clipPathUnits="objectBoundingBox"
+                                    transform={`scale(${1 / maxVisualWidth} ${1 / maxVisualHeight})`}
+                                >
+                                    {/* path */}
+                                    {!isLoadingBannerImg && <SvgWithRevealAnimation
+                                        className="clipPathHero"
+                                        d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z"
+                                        ref={this.pathRef}
+                                    />}
+                                </clipPath>}
+
                         </defs>
                     </svg>
                 </div>

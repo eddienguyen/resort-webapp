@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 import Section from 'components/Section';
 import SizedBox from 'components/SizedBox';
 import { RoomCard } from 'components/Room';
 import { RoomContext } from 'context';
+import Button from 'components/Button/Button';
 // import Hero from 'components/Hero/Hero';
 
 const Services = () => {
@@ -35,26 +37,31 @@ class Explore extends Component {
     static contextType = RoomContext;
 
     render() {
-        let { featuredRooms: rooms, isLoading } = this.context;
+        let { featuredRooms: rooms, isLoading, minDescChar } = this.context;
 
         let featuredRooms = (
             <div className="featuredRooms">
                 {rooms.map((room, key) => {
                     return (
-                        <RoomCard key={key} roomData={room} />
+                        <RoomCard key={key} roomData={room} minChar={minDescChar} />
                     );
                 })}
             </div>);
 
 
         return (
-            <Section 
-                label="explore" 
-                title="Explore wonderful dream rooms" 
+            <Section
+                label="explore"
+                title="Explore wonderful dream rooms"
                 classNames="explore"
-                >
+            >
                 <SizedBox height={4} />
                 {isLoading ? 'loading...' : featuredRooms}
+                <Link to="/rooms" >
+                    <Button >
+                        explore all rooms
+                    </Button>
+                </Link>
             </Section>
         );
     }

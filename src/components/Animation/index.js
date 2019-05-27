@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
-import { TimelineLite, Power2, TweenLite } from 'gsap';
+import { TimelineLite, Power2 } from 'gsap';
 
-const withAnimation = (WrappedComponent, transformOrigin) => {
+const withRevealAnimation = (WrappedComponent, transformOrigin) => {
 
-    class WithAnimation extends Component {
+    class Animation extends Component {
         constructor(props) {
             super(props);
             this.elementRef = null;
             this.tl = new TimelineLite();
         }
-
-        // animateIn() {
-        //     this.tl.from(this.elementRef, 5, {
-        //         scale: 0,
-        //         transformOrigin: transformOrigin || 'center',
-        //         ease: Power2.easeInOut
-        //     });
-        //     this.tl.play();
-        // }
 
         componentDidMount() {
             this.elementRef = this.props.forwardedRef.current;
@@ -34,7 +25,6 @@ const withAnimation = (WrappedComponent, transformOrigin) => {
         }
 
         componentWillUnmount() {
-            console.log('unmounting');
             this.tl.reverse();
         }
 
@@ -47,7 +37,7 @@ const withAnimation = (WrappedComponent, transformOrigin) => {
     }
 
     const forwardRef = (props, ref) => {
-        return <WithAnimation forwardedRef={ref} {...props} />
+        return <Animation forwardedRef={ref} {...props} />
     }
 
     return React.forwardRef(forwardRef);
@@ -55,6 +45,6 @@ const withAnimation = (WrappedComponent, transformOrigin) => {
 }
 
 export {
-    withAnimation
+    withRevealAnimation
 }
 
