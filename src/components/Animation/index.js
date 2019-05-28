@@ -3,6 +3,17 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import { TimelineLite, Power2, TweenLite } from 'gsap';
 
+const Path = ({ forwardedRef, d, className, ...props }) => {
+    return (
+        <path
+            ref={forwardedRef}
+            className={className}
+            d={d}
+            {...props}
+        />
+    );
+}
+
 const withRevealAnimation = (WrappedComponent, transformOrigin) => {
     class Animation extends Component {
         constructor(props) {
@@ -123,6 +134,7 @@ const withAnimationInViewPort = TargetComponent => {
 }
 
 export {
+    Path,
     withRevealAnimation,
     withAnimationInViewPort,
 }

@@ -6,32 +6,71 @@ import SizedBox from 'components/SizedBox';
 import { RoomCard } from 'components/Room';
 import { RoomContext } from 'context';
 import Button from 'components/Button/Button';
-import { withAnimationInViewPort } from 'components/Animation';
+import { withAnimationInViewPort, withRevealAnimation, Path } from 'components/Animation';
 // import Hero from 'components/Hero/Hero';
+import bannerSrc from 'assets/images/defaultBG.jpg';   // default hero banner
 
-const Services = () => {
-    return (
-        <Section label="services" classNames="services">
+const ServicesHeroAnimation = withRevealAnimation(Path, 'top left');
+class Services extends Component {
+    constructor(props) {
+        super(props);
+        this.pathRef = React.createRef();
+    }
 
-            <div className="servicesBanner">
+    render() {
+        return (
+            <Section label="services" classNames="services">
+                {/* <div className="servicesBanner">
+                    <svg
+                        className="svgImg"
+                        width={window.innerWidth}
+                        height={window.innerHeight}
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <image
+                            className="usesImg"
+                            height={window.innerHeight}
+                            // width={window.innerWidth * 0.375}
+                            href={bannerSrc}
+                        />
+                    </svg>
+                    <svg
+                        viewBox={`0 0 ${window.innerWidth * 0.375} ${window.innerHeight}`}
+                        className="svgClip"
+                    >
+                        <defs>
+                            <clipPath
+                                id="clipPathServices"
+                                clipPathUnits="objectBoundingBox"
+                                transform={`scale( ${1 / window.innerWidth * 0.375} ${1 / window.innerHeight})`}
+                            >
+                                <ServicesHeroAnimation
+                                    d="M0,.12s448-13.5,471,244c0,0-6.9,107.63,24,136.5,30.5,28.5,39.5,158.5-124,300,0,0-32,34.5-371,44.5Z"
+                                    ref={this.pathRef}
+                                />
+                            </clipPath>
+                        </defs>
+                    </svg>
 
-            </div>
-            <div className="servicesContent">
-                <h2>
-                    Private Rooms,
-                </h2>
-                <SizedBox height={4} />
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <SizedBox height={3} />
-                    <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                </p>
+                </div> */}
+                <div className="servicesContent">
+                    <h2>
+                        Private Rooms,
+                    </h2>
+                    <SizedBox height={4} />
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <SizedBox height={3} />
+                        <p>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                    </p>
+                    </div>
                 </div>
-            </div>
 
-        </Section>
-    );
+            </Section>
+        );
+    }
+
 }
 
 const AnimatedRoomCard = withAnimationInViewPort(RoomCard);

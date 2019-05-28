@@ -9,7 +9,32 @@
 }
 
 .services {
+  position: relative;
   text-align: center;
+}
+
+.servicesBanner {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  min-height: 100vh;
+  width: 37.5%;
+  overflow: hidden;
+  z-index: -1;
+
+  .usesImg {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    -webkit-clip-path: url(#clipPathServices);
+    clip-path: url(#clipPathServices);
+  }
+  .svgClip {
+    width: 0%;
+    height: 0%;
+  }
 }
 
 // .services-center {

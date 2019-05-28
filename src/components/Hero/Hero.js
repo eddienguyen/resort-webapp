@@ -2,21 +2,7 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import './styles.scss';
 import bannerSrc from 'assets/images/defaultBG.jpg';   // default hero banner
-import { withRevealAnimation } from 'components/Animation';
-
-class Path extends Component {
-    render() {
-        const { forwardedRef, d, className, ...props } = this.props;
-        return (
-            <path
-                ref={forwardedRef}
-                className={className}
-                d={d}
-                {...props}
-            />
-        );
-    }
-}
+import { withRevealAnimation, Path } from 'components/Animation';
 
 const SvgWithRevealAnimation = withRevealAnimation(Path, 'top right');
 export default class Hero extends Component {
@@ -85,6 +71,7 @@ export default class Hero extends Component {
                     <svg
                         viewBox={`0 0 ${maxVisualWidth} ${maxVisualHeight}`}
                         // <!--viewBox = "X1 Y1 X2 Y2"-->
+                        preserveAspectRatio="xMinYMid meet"
                         className="svgClip">
                         <defs>
                             {!isLoadingVisual &&
