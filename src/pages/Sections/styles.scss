@@ -31,7 +31,7 @@
 // }
 
 .services h2 {
-  font-family: $Open-sans-bold;
+  font-family: $Poppins-semi-bold;
   color: $primaryColor;
   font-size: 3rem;
 }
@@ -79,7 +79,7 @@
     margin-bottom: 1rem;
   }
   h5 {
-    font-family: $Open-sans-regular;
+    font-family: $Poppins-regular;
     color: $primaryColor;
     font-size: 1.2rem;
   }
@@ -115,6 +115,9 @@
       > * {
         flex: 1 0 30%;
       }
+    }
+    a.cta {
+      display: block;
     }
   }
 }

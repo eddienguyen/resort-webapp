@@ -6,6 +6,7 @@ import SizedBox from 'components/SizedBox';
 import { RoomCard } from 'components/Room';
 import { RoomContext } from 'context';
 import Button from 'components/Button/Button';
+import { withAnimationInViewPort } from 'components/Animation';
 // import Hero from 'components/Hero/Hero';
 
 const Services = () => {
@@ -33,8 +34,14 @@ const Services = () => {
     );
 }
 
+const AnimatedRoomCard = withAnimationInViewPort(RoomCard);
 class Explore extends Component {
     static contextType = RoomContext;
+
+    constructor(props) {
+        super(props);
+        this.roomRef = React.createRef();
+    }
 
     render() {
         let { featuredRooms: rooms, isLoading, minDescChar } = this.context;
@@ -43,7 +50,14 @@ class Explore extends Component {
             <div className="featuredRooms">
                 {rooms.map((room, key) => {
                     return (
-                        <RoomCard key={key} roomData={room} minChar={minDescChar} />
+                        // <RoomCard key={key} roomData={room} minChar={minDescChar} animationDelay={key * 0.1} />
+                        <AnimatedRoomCard
+                            ref={this.roomRef}
+                            key={key}
+                            roomData={room}
+                            minChar={minDescChar}
+                            animationDelay={key * 0.1}
+                        />
                     );
                 })}
             </div>);
@@ -57,7 +71,7 @@ class Explore extends Component {
             >
                 <SizedBox height={4} />
                 {isLoading ? 'loading...' : featuredRooms}
-                <Link to="/rooms" >
+                <Link to="/rooms" className="cta">
                     <Button >
                         explore all rooms
                     </Button>
@@ -68,6 +82,7 @@ class Explore extends Component {
 }
 
 class Experiences extends Component {
+
     state = {
         experiences: [
             {
@@ -90,8 +105,9 @@ class Experiences extends Component {
 
     render() {
         const { experiences } = this.state;
+
         return (
-            <Section label="experiences" title="Make your stay unforgettable" classNames="experiences" >
+            <Section label="experiences" title="Make your stay unforgettable" classNames="experiences">
                 <div>
                     <p>
                         <span>Villatel makes easy to add unforgettable</span>
@@ -100,13 +116,15 @@ class Experiences extends Component {
                 </div>
                 <div className="experiencesFlexBaseline">
                     {experiences.map((article, key) => {
-                        return <article key={key} className="experience">
-                            <img src={article.imageSrc} alt={article.label} />
-                            <div className="experienceContent">
-                                <h6>{article.label}</h6>
-                                <h5>{article.title}</h5>
-                            </div>
-                        </article>
+                        return (
+                            <article key={key} className="experience">
+                                <img src={article.imageSrc} alt={article.label} />
+                                <div className="experienceContent">
+                                    <h6>{article.label}</h6>
+                                    <h5>{article.title}</h5>
+                                </div>
+                            </article>
+                        )
                     })}
                 </div>
             </Section>
@@ -121,9 +139,10 @@ const Testimonials = () => {
         </Section>
     );
 }
+
 export {
     Services,
     Explore,
     Experiences,
-    Testimonials
+    Testimonials,
 }

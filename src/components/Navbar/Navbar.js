@@ -15,7 +15,7 @@ class Navbar extends Component {
             isScrollDown: false
         }
         this.handleToggle = this.handleToggle.bind(this);
-        this.handleScrollDown = this.handleScrollDown.bind(this);
+        // this.handleScrollDown = this.handleScrollDown.bind(this);
     }
     handleToggle() {
         this.setState(currentState => {
@@ -32,7 +32,7 @@ class Navbar extends Component {
             if (this.state.isScrollDown === true) return;
 
             this.setState({
-                isSrollDown: true
+                isScrollDown: true
             });
             return;
         }
@@ -41,7 +41,7 @@ class Navbar extends Component {
             if (this.state.isScrollDown === false) return;
 
             this.setState({
-                isSrollDown: false
+                isScrollDown: false
             });
             return;
         }
@@ -56,9 +56,7 @@ class Navbar extends Component {
     }
 
     render() {
-        const { isOpen } = this.state;
-
-        let linkClassName = this.state.isScrollDown ? 'scrolled' : 'unscrolled';
+        const { isOpen, isScrollDown } = this.state;
 
         return (
             <nav className="navbar">
@@ -78,7 +76,7 @@ class Navbar extends Component {
                                 <li key={key}>
                                     <Link
                                         to={prop.path}
-                                        className={linkClassName}
+                                        className={isScrollDown ? 'scrolled' : ''}
                                     >{prop.name}</Link>
                                 </li>
                             );

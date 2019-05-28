@@ -53,9 +53,21 @@
 
     // input[type=number],
     select {
-      // border: 0 none;
+      position: relative;
+      z-index: 1;
+      border: 0 none;
       outline: 0 none;
       -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 25px;
+      padding-right: 25px;
+
+      &:focus {
+        + .btnDrop {
+          box-shadow: 0 3px 4px 2px rgba(10, 10, 10, 0.22);
+        }
+      }
     }
   }
   .singleExtra {
@@ -63,6 +75,24 @@
       display: inline-block;
       font-size: 0.8rem;
       margin-left: 0.5rem;
+    }
+  }
+
+  .btnDrop {
+    position: absolute;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    border: 0 none;
+    outline: 0 none;
+    border-radius: 30px;
+    background: $mainWhite;
+    box-shadow: 0 3px 4px 2px rgba(10, 10, 10, 0.12);
+    color: $primaryColorLight;
+
+    .btnDropIcon {
+      display: inline-block;
+      vertical-align: middle;
     }
   }
 }

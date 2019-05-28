@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+// config:
+import 'config/polyfill';
+
 import App from 'App';
 import { RoomProvider } from './context';
 import * as serviceWorker from 'serviceWorker';

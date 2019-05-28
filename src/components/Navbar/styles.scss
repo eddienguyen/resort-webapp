@@ -13,10 +13,6 @@
   display: flex;
   justify-content: space-between;
   height: 80px;
-
-  a {
-    
-  }
 }
 .navBtn {
   background: transparent;
@@ -41,28 +37,22 @@
     display: block;
     text-decoration: none;
     padding: 1rem 0;
-
+    color: $mainWhite;
     transition: $mainTransition;
     text-align: center;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 3px;
-    font-family: $Open-sans-light;
+    font-family: $Poppins-light;
     background: transparent;
 
-    &.unscrolled {
-      color: $mainWhite;
-
-      &:hover {
-        color: $primaryColor;
-      }
+    &:hover {
+      color: $primaryColor;
     }
-
     &.scrolled {
       color: $primaryColor;
-
       &:hover {
-        color: $mainWhite;
+        color: $accentColor;
       }
     }
   }

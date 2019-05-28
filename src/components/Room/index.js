@@ -9,8 +9,9 @@ class RoomCard extends React.Component {
         super(props);
         this.state = {
             shouldShowExtendedDesc: false,
-            descriptionArr: []
+            descriptionArr: [],
         }
+
     }
 
     componentDidMount() {
@@ -26,7 +27,6 @@ class RoomCard extends React.Component {
             descriptionArr: descTextArr
         });
     }
-
 
 
     handleToggleExtendedDesc = () => {
@@ -99,11 +99,12 @@ RoomCard.propTypes = {
         capacity: PropTypes.number,
         images: PropTypes.arrayOf(PropTypes.string).isRequired,
     }),
-    minChar: PropTypes.number
+    minChar: PropTypes.number,
 }
 
 RoomCard.defaultProps = {
     minChar: 200,
+    // onVisible: () => { }
 }
 
 export {

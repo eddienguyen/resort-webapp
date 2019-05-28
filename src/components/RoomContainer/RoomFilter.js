@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 import { RoomContext } from 'context';
 import './RoomFilter.scss';
 
@@ -28,7 +29,6 @@ export default function RoomFilter() {
 
     let capacityOptions = capacities.map((capacity, key) => <option key={key} value={capacity}>{capacity}</option>)
 
-
     return (
         <form className="filterForm">
             {/* type */}
@@ -43,6 +43,9 @@ export default function RoomFilter() {
                 >
                     {typeOptions}
                 </select>
+                <button className="btnDrop">
+                    <TiArrowSortedDown className="btnDropIcon" />
+                </button>
             </div>
             {/* type */}
 
@@ -58,6 +61,9 @@ export default function RoomFilter() {
                 >
                     {capacityOptions}
                 </select>
+                <button className="btnDrop">
+                    <TiArrowSortedDown className="btnDropIcon" />
+                </button>
             </div>
             {/* Guests */}
 

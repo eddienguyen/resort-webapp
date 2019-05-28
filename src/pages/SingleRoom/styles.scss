@@ -32,7 +32,7 @@
     display: grid;
     grid-template-columns: 1fr;
     margin: 2rem auto;
-    font-family: $Open-sans-regular;
+    font-family: $Poppins-regular;
     color: $primaryColor;
   }
   .desc,
@@ -40,7 +40,7 @@
     margin: 1rem 0;
   }
   .roomExtras {
-    font-family: $Open-sans-regular;
+    font-family: $Poppins-regular;
     color: $primaryColor;
     .extras {
       list-style-type: none;
