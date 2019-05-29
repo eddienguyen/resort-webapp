@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './styles.scss';
+import withNavigation from './withNavigation';
 
 class RoomCard extends React.Component {
 
@@ -11,7 +12,6 @@ class RoomCard extends React.Component {
             shouldShowExtendedDesc: false,
             descriptionArr: [],
         }
-
     }
 
     componentDidMount() {
@@ -45,12 +45,19 @@ class RoomCard extends React.Component {
         } = this.state;
 
         const {
+            roomData,
+            minChar,
+            staticContext,  //  remove warning from console ?
+            animationDelay,  //  remove warning from console 2 ?
+            ...rest
+        } = this.props;
+        const {
             slug,
             name,
             description,
             capacity,
             images,
-        } = this.props.roomData;
+        } = roomData;
 
         let thumbnailSrc = images[0] || "https://via.placeholder.com/200";
 
@@ -74,7 +81,7 @@ class RoomCard extends React.Component {
                 );
 
         return (
-            <div className="roomCard">
+            <div className="roomCard" {...rest}>
                 <Link to={`/rooms/${slug}`} className="roomCardLink">
                     <img src={thumbnailSrc} alt={slug} />
                 </Link>
@@ -107,6 +114,5 @@ RoomCard.defaultProps = {
     // onVisible: () => { }
 }
 
-export {
-    RoomCard
-}
+// export default withNavigation(RoomCard);
+export default RoomCard;

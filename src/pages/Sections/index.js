@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './styles.scss';
 import Section from 'components/Section';
 import SizedBox from 'components/SizedBox';
-import { RoomCard } from 'components/Room';
+import RoomCard from 'components/Room';
 import { RoomContext } from 'context';
 import Button from 'components/Button/Button';
 import { withAnimationInViewPort, withRevealAnimation, Path } from 'components/Animation';
@@ -89,14 +89,14 @@ class Explore extends Component {
             <div className="featuredRooms">
                 {rooms.map((room, key) => {
                     return (
-                        // <RoomCard key={key} roomData={room} minChar={minDescChar} animationDelay={key * 0.1} />
-                        <AnimatedRoomCard
-                            ref={this.roomRef}
-                            key={key}
-                            roomData={room}
-                            minChar={minDescChar}
-                            animationDelay={key * 0.1}
-                        />
+                        <RoomCard key={key} roomData={room} minChar={minDescChar} animationDelay={key * 0.1} {...this.props} />
+                        // <AnimatedRoomCard
+                        //     ref={this.roomRef}
+                        //     key={key}
+                        //     roomData={room}
+                        //     minChar={minDescChar}
+                        //     animationDelay={key * 0.1}
+                        // />
                     );
                 })}
             </div>);

@@ -7,7 +7,7 @@ import SizedBox from 'components/SizedBox';
 
 export default function Error() {
     return <div>
-        <Hero heroClassname="defaultHero" >
+        <Hero heroClassname="defaultHero" shouldShowVisual >
             <Banner
                 title="404"
                 subtitle="Page not found"

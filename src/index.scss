@@ -5,3 +5,26 @@ body {
   line-height: 1.4;
   overflow-x: hidden;
 }
+
+/// the trick is to have both routes display at the same time
+.modalContainer {
+  position: fixed;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  min-height: 100vh;
+  z-index: 10;
+  overflow: hidden;
+  background: $mainWhite;
+  // test
+  opacity: 0.5;
+  
+  // STATES
+  // - when no content
+  &:empty {
+    display: none;
+  }
+}

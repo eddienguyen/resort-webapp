@@ -1,5 +1,5 @@
 .defaultHero,
-.roomsHero {
+.roomHero {
   min-height: 100vh;
   display: flex;
   flex-flow: column;
@@ -18,22 +18,13 @@
     z-index: -1;
     text-align: center;
 
-    .imageWrapper {}
-    .svgImg {}
+    .imageWrapper {
+    }
+    .svgImg {
+    }
     .svgClip {
       width: 0%;
       height: 0%;
-    }
-
-    .usesImg {
-      position: absolute;
-      top: 0px;
-      right: 0;
-      // left: 0px;
-      // width: 100%;
-
-      -webkit-clip-path: url(#clipPath);
-      clip-path: url(#clipPath);
     }
 
     // img {
@@ -43,13 +34,27 @@
   }
 }
 
-.roomsHero {
-  min-height: 60vh;
+.roomHero {
+  // min-height: 60vh;
+}
+
+.defaultHero {
+  .heroVisual {
+    .usesImg {
+      position: absolute;
+      top: 0px;
+      right: 0;
+      // left: 0px;
+      // width: 100%;
+      -webkit-clip-path: url(#clipPath);
+      clip-path: url(#clipPath);
+    }
+  }
 }
 
 @media screen and (min-width: 768px) {
   .defaultHero,
-  .roomsHero {
+  .roomHero {
     flex-flow: row nowrap;
     justify-content: space-between;
     padding: 0;
@@ -63,10 +68,22 @@
     .heroVisual {
       // position: relative;
       left: unset;
-      width: 60%;
       max-width: unset;
-      min-height: 110vh;
       z-index: 0;
+    }
+  }
+
+  .defaultHero {
+    .heroVisual {
+      width: 60%;
+      min-height: 110vh;
+    }
+  }
+
+  .roomHero {
+    .heroVisual {
+      width: 50%;
+      min-height: 100vh;
     }
   }
 }

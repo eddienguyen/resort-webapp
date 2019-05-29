@@ -3,6 +3,7 @@ import Hero from 'components/Hero/Hero';
 import Banner from 'components/Banner/Banner';
 import SizedBox from 'components/SizedBox';
 import { RoomContext } from 'context';
+import { capitalize } from 'config/utils';
 import './styles.scss';
 class SingleRoom extends Component {
     constructor(props) {
@@ -45,11 +46,12 @@ class SingleRoom extends Component {
         return (
             <>
                 <Hero
-                    heroClassname="defaultHero"
+                    heroClassname="roomHero"
                     heroImg={mainImg}
+                // shouldShowVisual 
                 >
                     <Banner
-                        title={name}
+                        title={capitalize(name)}
                         subtitle={description}
                     >
                         <SizedBox height={2} />

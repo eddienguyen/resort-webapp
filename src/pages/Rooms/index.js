@@ -5,7 +5,7 @@ import RoomContainer from 'components/RoomContainer';
 
 export default function Rooms() {
     return (<div>
-        <Hero>
+        <Hero shouldShowVisual>
             <Banner
                 title="Explore wonderful dream rooms"
                 subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"

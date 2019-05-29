@@ -1,5 +1,5 @@
 import React from 'react';
-import { RoomCard } from 'components/Room';
+import RoomCard from 'components/Room';
 import './RoomList.scss';
 
 export default function RoomList({ rooms, minDescChar }) {

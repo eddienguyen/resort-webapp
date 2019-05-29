@@ -25,7 +25,12 @@ export default class Hero extends Component {
     }
 
     componentDidMount() {
+        this.setVisualSize();
+    }
+
+    setVisualSize() {
         const node = this.svgImgRef.current;
+
         if (node !== null && node.clientWidth !== 0 && node.clientHeight !== 0) {
             this.setState({
                 maxVisualWidth: node.clientWidth,
@@ -42,7 +47,33 @@ export default class Hero extends Component {
             maxVisualHeight,
             isLoadingVisual,
             isLoadingBannerImg } = this.state;
-        const { heroClassname, children, heroImg } = this.props;
+        const { heroClassname, children, heroImg, shouldShowVisual } = this.props;
+
+
+        const svgClip = (
+            <svg
+                viewBox={`0 0 ${maxVisualWidth} ${maxVisualHeight}`}
+                // <!--viewBox = "X1 Y1 X2 Y2"-->
+                preserveAspectRatio="xMinYMid meet"
+                className="svgClip">
+                <defs>
+                    {!isLoadingVisual &&
+                        <clipPath
+                            id="clipPath"
+                            clipPathUnits="objectBoundingBox"
+                            transform={`scale(${1 / maxVisualWidth} ${1 / maxVisualHeight})`}
+                        >
+                            {/* path */}
+                            {!isLoadingBannerImg && <SvgWithRevealAnimation
+                                className="clipPathHero"
+                                d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z"
+                                ref={this.pathRef}
+                            />}
+                        </clipPath>}
+
+                </defs>
+            </svg>
+        );
 
         return (
             <header className={heroClassname}>
@@ -59,7 +90,7 @@ export default class Hero extends Component {
                     >
                         {
                             !isLoadingVisual && <image
-                                className="usesImg"
+                                className={shouldShowVisual ? "usesImg" : ""}
                                 height={maxVisualHeight}
                                 href={heroImg || bannerSrc}
                                 onLoad={this.handleImageLoaded.bind(this)}
@@ -68,28 +99,7 @@ export default class Hero extends Component {
 
                     </svg>
 
-                    <svg
-                        viewBox={`0 0 ${maxVisualWidth} ${maxVisualHeight}`}
-                        // <!--viewBox = "X1 Y1 X2 Y2"-->
-                        preserveAspectRatio="xMinYMid meet"
-                        className="svgClip">
-                        <defs>
-                            {!isLoadingVisual &&
-                                <clipPath
-                                    id="clipPath"
-                                    clipPathUnits="objectBoundingBox"
-                                    transform={`scale(${1 / maxVisualWidth} ${1 / maxVisualHeight})`}
-                                >
-                                    {/* path */}
-                                    {!isLoadingBannerImg && <SvgWithRevealAnimation
-                                        className="clipPathHero"
-                                        d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z"
-                                        ref={this.pathRef}
-                                    />}
-                                </clipPath>}
-
-                        </defs>
-                    </svg>
+                    {shouldShowVisual && svgClip}
                 </div>
             </header >
         )
@@ -98,9 +108,11 @@ export default class Hero extends Component {
 }
 
 Hero.propTypes = {
-    heroClassname: propTypes.oneOf(["defaultHero", "roomsHero"])
+    heroClassname: propTypes.oneOf(["defaultHero", "roomHero"]),
+    shouldShowVisual: propTypes.bool
 }
 
 Hero.defaultProps = {
-    heroClassname: 'defaultHero'
+    heroClassname: 'defaultHero',
+    shouldShowVisual: true
 }
