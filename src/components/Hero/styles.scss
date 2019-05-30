@@ -1,11 +1,26 @@
+@import "sass/base/_config_global.scss";
 .defaultHero,
 .roomHero {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
   padding: 4rem 2rem;
   overflow-x: hidden;
+
+  // .action {}
+  .actionClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 16px;
+    width: 32px;
+    height: 32px;
+    z-index: 1;
+
+    @extend .appearOnModal;
+  }
 
   .heroVisual {
     position: absolute;
@@ -13,7 +28,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-
     overflow: hidden;
     z-index: -1;
     text-align: center;
@@ -31,15 +45,6 @@
     //   height: 100%;
     //   clip-path: url('#clipPath');
     // }
-  }
-}
-
-.roomHero {
-  // min-height: 60vh;
-}
-
-.defaultHero {
-  .heroVisual {
     .usesImg {
       position: absolute;
       top: 0px;
@@ -51,6 +56,16 @@
     }
   }
 }
+
+// .roomHero {
+//   // min-height: 60vh;
+// }
+
+// .defaultHero {
+//   .heroVisual {
+
+//   }
+// }
 
 @media screen and (min-width: 768px) {
   .defaultHero,

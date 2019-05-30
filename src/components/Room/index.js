@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './styles.scss';
 import withNavigation from './withNavigation';
+import './styles.scss';
 
 class RoomCard extends React.Component {
 
@@ -49,6 +49,7 @@ class RoomCard extends React.Component {
             minChar,
             staticContext,  //  remove warning from console ?
             animationDelay,  //  remove warning from console 2 ?
+            onClick,        // as passed down from withNavigation, and onClick should be triggered when user clicks on image only
             ...rest
         } = this.props;
         const {
@@ -81,10 +82,10 @@ class RoomCard extends React.Component {
                 );
 
         return (
-            <div className="roomCard" {...rest}>
-                <Link to={`/rooms/${slug}`} className="roomCardLink">
-                    <img src={thumbnailSrc} alt={slug} />
-                </Link>
+            <div className="roomCard" {...rest} >
+                {/* <Link to={`/rooms/${slug}`} className="roomCardLink"> */}
+                <img src={thumbnailSrc} alt={slug} className="roomCardLink" onClick={onClick} />
+                {/* </Link> */}
                 <div className='roomCardContent'>
                     <h5>{name}</h5>
                     {descriptionParagraph}
@@ -107,12 +108,14 @@ RoomCard.propTypes = {
         images: PropTypes.arrayOf(PropTypes.string).isRequired,
     }),
     minChar: PropTypes.number,
+    onClick: PropTypes.func,
 }
 
 RoomCard.defaultProps = {
     minChar: 200,
+    onClick: () => null,
     // onVisible: () => { }
 }
 
-// export default withNavigation(RoomCard);
-export default RoomCard;
+export default withNavigation(RoomCard);
+// export default RoomCard;

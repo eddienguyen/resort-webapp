@@ -56,6 +56,85 @@ const withRevealAnimation = (WrappedComponent, transformOrigin) => {
 
 }
 
+// const withAnimationInViewPort = TargetComponent => {
+//     class Animation extends Component {
+
+//         constructor(props) {
+//             super(props);
+//             this.elementRef = null;
+//             this.animated = false;
+//             this.tl = new TimelineLite({ paused: true });
+//         }
+
+//         componentDidMount() {
+//             console.log(this.props);
+//             // get observer
+//             if (this.props.forwardedRef === null) return;
+//             if (!this.props.forwardedRef.current) return; // is a DOM node
+
+//             this.elementRef = findDOMNode(this.props.forwardedRef.current);
+
+//             TweenLite.set(this.elementRef, {
+//                 scale: 0.9,
+//                 autoAlpha: 0
+//             });
+
+//             this.observer = new IntersectionObserver(this.intersectionCallback, {
+//                 // root: Defaults to the browser viewport if not specified or if null.
+//                 // threshold:[1] The default is 0 (meaning as soon as even one pixel is visible, the callback will be run). A value of 1.0 means that the threshold isn't considered passed until every pixel is visible.
+//             });
+//             this.observer.observe(this.elementRef);
+
+
+
+//             // if (this.elementRef !== null) {
+//             //     TweenLite.to(this.elementRef, 10, {
+//             //         x: 100
+//             //     });
+//             // }
+
+//         }
+
+//         intersectionCallback = (entries, observer) => {
+//             entries.forEach((entry) => {
+//                 const { isIntersecting, intersectionRatio, target } = entry;
+//                 const isInviewPort = typeof isIntersecting !== 'undefined' ? isIntersecting : intersectionRatio !== 0;
+//                 this.tl.to(target, 0.5, {
+//                     scale: 1,
+//                     autoAlpha: 1,
+//                     ease: Power2.easeIn,
+//                 }).delay(this.props.animationDelay || 0);
+//                 ;
+//                 if (this.elementRef != null && isInviewPort) {
+//                     if (!this.animated) {
+//                         this.animated = true;
+//                         this.tl.play();
+//                     }
+//                 }
+//             });
+//         }
+
+
+//         render() {
+//             const { forwardedRef, ...rest } = this.props;
+
+//             return (
+//                 <TargetComponent ref={forwardedRef} {...rest} />
+//             );
+//         }
+//     }
+
+//     Animation.propTypes = {
+//         animationDelay: PropTypes.number,
+//         // onVisible: PropTypes.func,
+//     }
+
+//     return React.forwardRef((props, ref) => {
+//         return <Animation {...props} forwardedRef={ref} />
+//     });
+// }
+
+
 const withAnimationInViewPort = TargetComponent => {
     class Animation extends Component {
 
@@ -67,8 +146,10 @@ const withAnimationInViewPort = TargetComponent => {
         }
 
         componentDidMount() {
+            console.log(this.props);
 
             // get observer
+            if (this.props.forwardedRef === null) return;
             if (!this.props.forwardedRef.current) return; // is a DOM node
 
             this.elementRef = findDOMNode(this.props.forwardedRef.current);
@@ -116,7 +197,6 @@ const withAnimationInViewPort = TargetComponent => {
 
         render() {
             const { forwardedRef, ...rest } = this.props;
-
             return (
                 <TargetComponent ref={forwardedRef} {...rest} />
             );
@@ -129,14 +209,14 @@ const withAnimationInViewPort = TargetComponent => {
     }
 
     return React.forwardRef((props, ref) => {
-        return <Animation {...props} forwardedRef={ref} />
+        return <Animation forwardedRef={ref} {...props} />
     });
 }
 
 export {
     Path,
     withRevealAnimation,
-    withAnimationInViewPort,
+    withAnimationInViewPort
 }
 
 // // HOC for handleViewport

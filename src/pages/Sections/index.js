@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+// import { compose } from 'redux';
 import './styles.scss';
 import Section from 'components/Section';
 import SizedBox from 'components/SizedBox';
@@ -9,6 +10,7 @@ import Button from 'components/Button/Button';
 import { withAnimationInViewPort, withRevealAnimation, Path } from 'components/Animation';
 // import Hero from 'components/Hero/Hero';
 import bannerSrc from 'assets/images/defaultBG.jpg';   // default hero banner
+import withNavigation from 'components/Room/withNavigation';
 
 const ServicesHeroAnimation = withRevealAnimation(Path, 'top left');
 class Services extends Component {
@@ -73,7 +75,7 @@ class Services extends Component {
 
 }
 
-const AnimatedRoomCard = withAnimationInViewPort(RoomCard);
+// const AnimatedRoomCard = withAnimationInViewPort(RoomCard);
 class Explore extends Component {
     static contextType = RoomContext;
 
@@ -89,10 +91,14 @@ class Explore extends Component {
             <div className="featuredRooms">
                 {rooms.map((room, key) => {
                     return (
-                        <RoomCard key={key} roomData={room} minChar={minDescChar} animationDelay={key * 0.1} {...this.props} />
-                        // <AnimatedRoomCard
-                        //     ref={this.roomRef}
+                        <RoomCard
+                            key={key}
+                            roomData={room}
+                            minChar={minDescChar}
+                        />
+                        // <NavigatedRoomCard
                         //     key={key}
+                        //     ref={this.roomRef}
                         //     roomData={room}
                         //     minChar={minDescChar}
                         //     animationDelay={key * 0.1}

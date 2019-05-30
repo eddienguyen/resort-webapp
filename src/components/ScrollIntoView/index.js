@@ -3,14 +3,14 @@ import { withRouter } from 'react-router-dom';
 
 class ScrollIntoView extends PureComponent {
     componentDidMount() {
-        // window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     }
     componentDidUpdate(prevProps, prevState) {
-        // if (this.props.location !== prevProps.location) window.scrollTo(0, 0);
+        if (this.props.location !== prevProps.location) window.scrollTo(0, 0);
     }
     render() {
         return this.props.children;
     }
 }
 
-export default withRouter(ScrollIntoView);
+export default ScrollIntoView;

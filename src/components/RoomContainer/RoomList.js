@@ -3,6 +3,7 @@ import RoomCard from 'components/Room';
 import './RoomList.scss';
 
 export default function RoomList({ rooms, minDescChar }) {
+
     const emptyRoomList = (
         <div className="emptySearch">
             <h3>unfortunately no rooms matched your search.</h3>

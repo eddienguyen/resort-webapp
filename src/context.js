@@ -5,6 +5,7 @@ import Client from './contentful';
 
 const RoomContext = React.createContext();
 
+// TODO: add history to context
 class RoomProvider extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +24,8 @@ class RoomProvider extends Component {
             capacity: 1,
             pets: false,
             breakfast: false,
-            minDescChar: 0
+            minDescChar: 0,
+            history: {}
         };
         // this.formatData = this.formatData.bind(this);
     }
@@ -96,6 +98,19 @@ class RoomProvider extends Component {
         }, this.filterRooms);
     }
 
+    initHistory = () => {
+        
+    }
+
+    handleHistoryChange = (passedHistory) => {
+        console.group('handleHistoryChange');
+        console.log('passedHistory', passedHistory);
+        console.groupEnd();
+        this.setState({
+            history: passedHistory
+        });
+    }
+
     filterRooms() {
         console.log('filtering');
 
@@ -152,7 +167,12 @@ class RoomProvider extends Component {
 
     render() {
         return (
-            <RoomContext.Provider value={{ ...this.state, getRoom: this.getRoom, handleChange: this.handleChange }}>
+            <RoomContext.Provider value={{
+                ...this.state,
+                getRoom: this.getRoom,
+                handleChange: this.handleChange,
+                handleHistoryChange: this.handleHistoryChange
+            }}>
                 {this.props.children}
             </RoomContext.Provider>
         );

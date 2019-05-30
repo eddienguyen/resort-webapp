@@ -40,48 +40,21 @@ export default class Hero extends Component {
         }
     }
 
-    componentDidUpdate() { }
     render() {
         const {
             maxVisualWidth,
             maxVisualHeight,
             isLoadingVisual,
             isLoadingBannerImg } = this.state;
+
         const { heroClassname, children, heroImg, shouldShowVisual } = this.props;
 
-
-        const svgClip = (
-            <svg
-                viewBox={`0 0 ${maxVisualWidth} ${maxVisualHeight}`}
-                // <!--viewBox = "X1 Y1 X2 Y2"-->
-                preserveAspectRatio="xMinYMid meet"
-                className="svgClip">
-                <defs>
-                    {!isLoadingVisual &&
-                        <clipPath
-                            id="clipPath"
-                            clipPathUnits="objectBoundingBox"
-                            transform={`scale(${1 / maxVisualWidth} ${1 / maxVisualHeight})`}
-                        >
-                            {/* path */}
-                            {!isLoadingBannerImg && <SvgWithRevealAnimation
-                                className="clipPathHero"
-                                d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z"
-                                ref={this.pathRef}
-                            />}
-                        </clipPath>}
-
-                </defs>
-            </svg>
-        );
-
-        return (
-            <header className={heroClassname}>
-                {children}
-                {/* visual */}
+        const heroVisual = shouldShowVisual
+            ? (
                 <div className="heroVisual"
                     ref={this.svgImgRef}
                 >
+
                     <svg
                         width={maxVisualWidth}
                         height={maxVisualHeight}
@@ -90,7 +63,7 @@ export default class Hero extends Component {
                     >
                         {
                             !isLoadingVisual && <image
-                                className={shouldShowVisual ? "usesImg" : ""}
+                                className="usesImg"
                                 height={maxVisualHeight}
                                 href={heroImg || bannerSrc}
                                 onLoad={this.handleImageLoaded.bind(this)}
@@ -99,8 +72,53 @@ export default class Hero extends Component {
 
                     </svg>
 
-                    {shouldShowVisual && svgClip}
+                    <svg
+                        viewBox={`0 0 ${maxVisualWidth} ${maxVisualHeight}`}
+                        // <!--viewBox = "X1 Y1 X2 Y2"-->
+                        preserveAspectRatio="xMinYMid meet"
+                        className="svgClip">
+                        <defs>
+                            {!isLoadingVisual &&
+                                <clipPath
+                                    id="clipPath"
+                                    clipPathUnits="objectBoundingBox"
+                                    transform={`scale(${1 / maxVisualWidth} ${1 / maxVisualHeight})`}
+                                >
+                                    {/* path */}
+                                    {!isLoadingBannerImg && <SvgWithRevealAnimation
+                                        className="clipPathHero"
+                                        d="M760.38.38H.38s0,89,146,189c0,0,96,64,99,174,2.64,97.14,162,405,515,405Z"
+                                        ref={this.pathRef}
+                                    />}
+                                </clipPath>}
+
+                        </defs>
+                    </svg>
                 </div>
+            )
+            : (
+                <div className="heroVisual"
+                    ref={this.svgImgRef}
+                >
+                    {!isLoadingVisual &&
+                        <img
+                            height={maxVisualHeight}
+                            src={heroImg || bannerSrc}
+                            onLoad={this.handleImageLoaded.bind(this)}
+                            alt="heroImg"
+                        />
+                    }
+                </div >
+            );
+
+        return (
+            <header className={heroClassname}>
+                {children}
+                {/* visual */}
+                {/* <div className="heroVisual"
+                    ref={this.svgImgRef}
+                ></div> */}
+                {heroVisual}
             </header >
         )
     }

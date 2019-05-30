@@ -1,0 +1,22 @@
+@mixin enable-transition {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+@mixin zoomFont($to) {
+  @include enable-transition;
+
+  .modalContainer-enter-active & {
+    font-size: $to;
+  }
+}
+
+.appearOnModal {
+  opacity: 0;
+
+  @include enable-transition;
+
+  .modalContainer-enter-done &,
+  .modalContainer-enter-active & {
+    opacity: 1;
+  }
+}

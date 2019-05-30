@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { RoomContext } from 'context';
 
-export default (Component) => ({ history, roomData, ...rest }) => {
+export default (WrappedComponent) => ({ roomData, ...rest }) => {
     let elementRef = null;
 
+    const context = useContext(RoomContext);
+    const {
+        history: passedHistory
+    } = context;
+
     const goToDetailModal = () => {
-        console.log('pushing');
         const {
             top,
             right,
@@ -14,32 +19,38 @@ export default (Component) => ({ history, roomData, ...rest }) => {
             height
         } = elementRef.getBoundingClientRect();
 
-        history.push({
-            pathname: `/rooms/${roomData.slug}`,
-            state: {
-                to: "modal",
-                meta: {
-                    from: {
-                        top,
-                        right,
-                        bottom,
-                        left,
-                        width,
-                        height
+        try {
+            passedHistory.push({
+                pathname: `/rooms/${roomData.slug}`,
+                state: {
+                    to: "modal",
+                    meta: {
+                        from: {
+                            top,
+                            right,
+                            bottom,
+                            left,
+                            width,
+                            height
+                        }
                     }
                 }
-            }
-        })
+            });
+        } catch (error) {
+            console.group('Error in pushing from passedHistory:');
+            console.log('error: ', error);
+            console.groupEnd();
+        }
+
     };
 
     return (
-        <div ref={el => elementRef = el}>
-            <Component
+        <div ref={(el) => { elementRef = el }}>
+            <WrappedComponent
                 onClick={goToDetailModal}
                 roomData={roomData}
                 {...rest}
             />
         </div>
     );
-
 }

@@ -28,7 +28,6 @@ class Navbar extends Component {
     handleScrollDown = () => {
         const navbarHeight = 80;
         if (window.scrollY > navbarHeight) {
-            console.log('scrolled');
             if (this.state.isScrollDown === true) return;
 
             this.setState({
@@ -37,7 +36,6 @@ class Navbar extends Component {
             return;
         }
         if (window.scrollY <= navbarHeight) {
-            console.log('unscrolled');
             if (this.state.isScrollDown === false) return;
 
             this.setState({
