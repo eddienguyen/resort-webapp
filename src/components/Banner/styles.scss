@@ -2,12 +2,20 @@
 
 .banner {
   display: inline-block;
-  color: $mainWhite;
+  color: $primaryColor;
   padding: 0;
   text-align: center;
   align-self: center;
   z-index: 1;
+
+  .viewContainer & {
+    color: $primaryColor;
+  }
+  .modalContainer & {
+    color: $mainWhite;
+  }
 }
+
 .banner h1 {
   font-size: 2.5rem;
   font-family: $Poppins-semi-bold;
