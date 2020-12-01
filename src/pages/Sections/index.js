@@ -10,7 +10,6 @@ import Button from 'components/Button/Button';
 import { withAnimationInViewPort, withRevealAnimation, Path } from 'components/Animation';
 // import Hero from 'components/Hero/Hero';
 import bannerSrc from 'assets/images/defaultBG.jpg';   // default hero banner
-import withNavigation from 'components/Room/withNavigation';
 
 const ServicesHeroAnimation = withRevealAnimation(Path, 'top left');
 class Services extends Component {

@@ -62,7 +62,7 @@ class App extends React.Component {
             timeout={400}
             key={location.pathname}
             appear={true}
-            mountOnEnter={true}
+            mountOnEnter={false}
           >
             <div className="modalContainer" style={position}>
               {

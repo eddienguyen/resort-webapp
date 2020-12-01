@@ -48,4 +48,9 @@
   .banner h1 {
     font-size: 4rem;
   }
+  .banner {
+    .modalContainer & {
+      color: $primaryColor;
+    }
+  }
 }
